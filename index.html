@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manao task</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="resetStyles.css">    
+    <link rel="stylesheet" href="main.css">
+    <script src="auth.js" type="module"></script>
+    <script src="script.js" type="module" defer></script>
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo">Manao Task</h1>
+    </header>
+
+    <main class="main">
+        <form class="form form--auth" name="form-auth" action="#">
+            <div class="img-block">
+                <img class="form-img" src="img/1.png" alt="image">
+            </div>
+            <h2 class="form-header form-header--auth">Authorization</h2>
+
+            <input class="input input--auth" autocomplete="off" name="login" type="text" placeholder="login">
+            <input class="input input--auth" autocomplete="off" name="password" type="password" placeholder="password">
+            <input class="btn btn--auth" type="submit" value="Login">
+        </form>
+
+        <form class="form form--reg" name="form-reg" action="#">
+            <div class="img-block">
+                <img class="form-img" src="img/2.png" alt="image">
+            </div>
+            <h2 class="form-header form-header--reg">Registration</h2>
+
+            <input class="input input--reg" autocomplete="off" name="login" type="text" placeholder="login">
+            <input class="input input--reg" autocomplete="off" name="password" type="password" placeholder="password">
+            <input class="input input--reg" autocomplete="off" name="confirm-password" type="password" placeholder="confirm password">
+            <input class="input input--reg" autocomplete="off" name="email" type="email" placeholder="email">
+            <input class="input input--reg" autocomplete="off" name="name" type="text" placeholder="name">
+            <input class="btn btn--reg" type="submit" value="Sign up">
+        </form>
+    </main>
+</body>
+</html>

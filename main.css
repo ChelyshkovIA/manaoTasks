@@ -1,0 +1,137 @@
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.logo {
+    font-size: 30px;
+    color: #aaa;
+    font-family: 'Open Sans', sans-serif;
+    margin: 20px 0;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.greeting {
+    font-size: 34px;
+    color: #888;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.logoutAnchor {
+    height: 40px;
+    border-radius: 5px;
+    padding: 0 15px;
+    background-color: #2668d5;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    line-height: 40px;
+
+    margin: 5px 20px 0 20px;
+    transition: background-color 0.2s linear;
+}
+
+.logoutAnchor:hover {
+    background-color: #0458b5;
+}
+
+.form {
+    width: 90%;
+    max-width: 350px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px;
+
+    border-radius: 4px;
+    background-image: linear-gradient(rgba(119, 122, 246), rgba(167, 54, 235));
+}
+
+.img-block {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    overflow: hidden;
+    background-color: #fff;
+    margin: 40px 0 10px 0;
+}
+
+.form-img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    object-fit: cover;
+    height: 25px;
+    width: 25px;
+}
+
+.form-header {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22px;
+    color: #fff;
+    margin: 20px 0;
+}
+
+.input {
+    margin: 0 0 10px 0;
+    padding: 7px 0px;
+    width: 80%;
+    color: #fff;
+    font-size: 17px;
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #fff; 
+}
+
+.input--err {
+    border-bottom: 1px solid lightcoral;
+}
+
+.success {
+    color: lightgreen;
+}
+
+.err {
+    color: lightcoral;
+}
+
+.input::placeholder {
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgba(0,0,0,0);
+}
+
+.btn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #fff;
+    height: 50px;
+    padding: 0 20px;
+    font-size: 17px;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 50px;
+    border-radius: 25px;
+    margin: 15px 0 30px 0;
+    box-shadow: 0px 0px 12px 1px rgba(0,0,0,.5);
+
+    transition: box-shadow .1s linear;
+}
+
+.btn:hover {
+    box-shadow: 0px 0px 12px 1px rgba(0,0,0,0);
+}
