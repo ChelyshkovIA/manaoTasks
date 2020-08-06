@@ -61,7 +61,7 @@ if(req.response != 'err2' && req.response != 'err1') {
             }
         }
         
-        //осуществляем подсветку несовпадающих паролей на стадии ввода
+        //осуществляем подсветку несовпадающих паролей на стадии отправки формы
         if(this.elements['password'].value != this.elements['confirm-password'].value) {
             regForm.elements['password'].classList.add('input--err');
             regForm.elements['confirm-password'].classList.add('input--err');
