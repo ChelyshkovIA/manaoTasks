@@ -10,8 +10,9 @@ function authorization(block) {
     req.send();
 
     req.addEventListener('load', function() {
-        if(this.response == 'err1') {
-            let header = block.querySelector('.form-header--auth');
+        let resp = JSON.parse(this.response);
+        let header = block.querySelector('.form-header--auth');
+        if(resp.status == 'err1') {
             header.classList.add('err');
             header.innerText = 'Authorization error!';
             setTimeout(() => {
@@ -19,26 +20,29 @@ function authorization(block) {
                 header.classList.remove('err');        
             }, 3000);
             return;
-        }
-        let resp = JSON.parse(this.response);
+        }else if(resp.status == 'err2') {
+            return;
+        }else if(resp.status == 'ok') {
+            let regForm  = block.querySelector('.form--reg');
+            let authForm = block.querySelector('.form--auth');
         
-        let regForm  = block.querySelector('.form--reg');
-        let authForm = block.querySelector('.form--auth');
+            regForm.remove();
+            authForm.remove();
+        
+            let greeting = document.createElement('h1');
+            greeting.className = 'greeting';
+            greeting.append('Hello, ' + resp.body);
     
-        regForm.remove();
-        authForm.remove();
+            let logoutAnchor = document.createElement('a');
+            logoutAnchor.className = 'logoutAnchor';
+            logoutAnchor.href = 'logout.php';
+            logoutAnchor.append('Log out');
     
-        let greeting = document.createElement('h1');
-        greeting.className = 'greeting';
-        greeting.append('Hello, ' + resp.name);
-
-        let logoutAnchor = document.createElement('a');
-        logoutAnchor.className = 'logoutAnchor';
-        logoutAnchor.href = 'logout.php';
-        logoutAnchor.append('Log out');
-
-        block.append(greeting);
-        block.append(logoutAnchor);
+            block.append(greeting);
+            block.append(logoutAnchor);
+        }else {
+            console.log('strange error: ' + this.response);
+        }
     });
 }
 

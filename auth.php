@@ -23,9 +23,12 @@
 
     $login    = htmlentities(strtolower($_POST['login']));
     $password = htmlentities($_POST['password']);
+    
+    $resp = ['status' => ''];
 
     if($login == '' || $password == '') {
-        die('err1');
+        $resp['status'] = 'err1';
+        die(json_encode($resp));
     }
 
     $hashPw = md5($password . $_salt);
@@ -34,26 +37,30 @@
     foreach($users as $user) {
         if($login == $user->login) {
             if($hashPw == $user->password) {
-                // die($user->login . ' ' . $user->password);
                 $hash = md5(generateCode(10));
                 $user->hash = $hash;
                 $str = $users->asXML();
 
                 $file = fopen('db.xml', 'w');
-                if(fwrite($file, $str))
+                if(fwrite($file, $str)){
                     fclose($file);
-                else
-                    die('err3');
+                }
+                else {
+                    $resp['status'] = 'err3';
+                    die(json_encode($resp));
+                }
                 
                 setcookie('user', $login, time() + 3600, '/');
                 setcookie('hash', $hash, time() + 3600, '/');
                 
                 session_start();
                 $_SESSION['hash'] = $hash;
-                die('ok');    
+                $resp['status'] = 'ok';
+                die(json_encode($resp));    
             }
         }
     }
 
-    die('err2');
+    $resp['status'] = 'err2';
+    die(json_encode($resp));
 ?>

@@ -5,7 +5,8 @@ let req = new XMLHttpRequest();
 let url = 'returnUserInfo.php';
 req.open('POST', url, false);
 req.send();
-if(req.response != 'err2' && req.response != 'err1') {
+let resp = JSON.parse(req.response);
+if(resp.status == 'ok') {
     //если да - отрисовка личного кабинета
     authorization(document.querySelector('.main'));
 }else {
@@ -82,7 +83,8 @@ if(req.response != 'err2' && req.response != 'err1') {
         //ждем загрузки запроса и выводим сообщения в зависимости от ответа сервера
         //коды ошибок можно посмотреть в соотв. php-скриптах
         req.addEventListener('load', function() {
-            switch(this.response) {
+            let resp = JSON.parse(this.response);
+            switch(resp.status) {
                 case 'err1':
                     regHeader.innerText = 'Fill in all the fields!';
                     regHeader.classList.add('err');
@@ -124,7 +126,6 @@ if(req.response != 'err2' && req.response != 'err1') {
                 }    
                 default:
                     console.log(this.response);
-                    alert('error! say to develioper!');
                     return;    
             }
         });
@@ -184,7 +185,8 @@ if(req.response != 'err2' && req.response != 'err1') {
         //коды ошибок можно посмотреть в соотв. php-скриптах
         //если ошибок нет (код ok) - скрываем формы и отображаем личный кабинет пользователя
         req.addEventListener('load', function() {
-            switch(this.response) {
+            let resp = JSON.parse(this.response);
+            switch(resp.status) {
                 case 'ok':
                     authorization(document.querySelector('.main'));
                     break;

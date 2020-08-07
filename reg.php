@@ -19,6 +19,8 @@
     $email            = htmlentities(strtolower($_POST['email']));
     $name             = htmlentities($_POST['name']);
 
+    $resp = ['status' => ''];
+
     if(
         !isset($login) ||
         !isset($password) ||
@@ -26,19 +28,25 @@
         !isset($email) ||
         !isset($name)
     ) {
-        die('err1');
+        $resp['status'] = 'err1';
+        die(json_encode($resp));
     }
 
     if($password !== $confirmPassword) {
-        die('err2');
+        $resp['status'] = 'err2';
+        die(json_encode($resp));
     }
 
     $users = simplexml_load_file("db.xml");
     foreach($users as $user) {
-        if(strtolower($user->login) == $login)
-            die('err3');
-        else if(strtolower($user->email) == $email)
-            die("err4");    
+        if(strtolower($user->login) == $login) {
+            $resp['status'] = 'err3';
+            die(json_encode($resp));
+        }
+        else if(strtolower($user->email) == $email) {
+            $resp['status'] = 'err4';
+            die(json_encode($resp));    
+        }
     }
 
     $hashPw = md5($password . $_salt);
@@ -54,9 +62,11 @@
     $file = fopen('db.xml', 'w');
     if(fwrite($file, $str)) {
         fclose($file);
-        die('ok');
+        $resp['status'] = 'ok';
+        die(json_encode($resp));
     }else {
         fclose($file);
-        die('err5');
+        $resp['status'] = 'err5';
+        die(json_encode($resp));
     }
 ?>
